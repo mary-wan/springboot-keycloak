@@ -1,0 +1,34 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'false'
+  datasource:
+    hikari:
+      connection-timeout: '60000'
+      pool-name: testHikariPool
+      idle-timeout: '60000'
+      maximum-pool-size: '10'
+      max-lifetime: '30000'
+      minimum-idle: '5'
+    password: ''
+    username: root
+    url: jdbc:mysql://localhost:3306/concretepage?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false
+  jackson:
+    serialization:
+      fail-on-empty-beans: 'false'
+  application:
+    name: kcb-staff-directory
+server:
+  port: '8989'
+
+keycloak:
+  realm: master
+  auth-server-url: http://${KEYCLOAK_HOST:localhost}:${KEYCLOAK_PORT:8085}/auth
+  resource: spring-app
+  bearer-only: true
+
+
